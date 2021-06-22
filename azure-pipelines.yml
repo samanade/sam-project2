@@ -7,9 +7,9 @@ trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+- vmImage: ubuntu-latest
 
-task: AzureRmWebAppDeployment@4
+- task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Avanade Delivery(3eba6e29-3983-495b-a539-c3c4b43fb90c)'
@@ -17,7 +17,7 @@ task: AzureRmWebAppDeployment@4
     WebAppName: 'sam-frontend'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
-task: AzureRmWebAppDeployment@4
+- task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Avanade Delivery(3eba6e29-3983-495b-a539-c3c4b43fb90c)'
@@ -25,7 +25,7 @@ task: AzureRmWebAppDeployment@4
     WebAppName: 'sam-letters'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
-task: AzureRmWebAppDeployment@4
+- task: AzureRmWebAppDeployment@4
  inputs:
     ConnectionType: 'AzureRM'
     appType: 'webApp'
