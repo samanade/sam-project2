@@ -14,8 +14,8 @@ env:
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 5.0.x
   FE_DIRECTORY: ./code/frontend
-  NUMBERS_DIRECTORY: ./code/serviceone
-  LETTERS_DIRECTORY: ./code/servicetwo
+  NUMBERS_DIRECTORY: ./code/serviceone/serviceone
+  LETTERS_DIRECTORY: ./code/servicetwo/servicetwo
   MERGE_DIRECTORY: ./code/servicethree
   TEST_DIRECTORY: ./code/tests
   
