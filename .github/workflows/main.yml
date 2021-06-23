@@ -19,10 +19,10 @@ env:
   MERGE_DIRECTORY: ./code/servicethree
   TEST_DIRECTORY: ./code/tests
   
-  FE_PACKAGE_PATH: ./code/frontend/publish
-  NUMBERS_PACKAGE_PATH: ./code/serviceone/publish
-  LETTERS_PACKAGE_PATH: ./code/servicetwo/publish
-  MERGE_PACKAGE_PATH: ./code/servicethree/publish
+  FE_PACKAGE_PATH: ../code/frontend/publish
+  NUMBERS_PACKAGE_PATH: ../code/serviceone/publish
+  LETTERS_PACKAGE_PATH: ../code/servicetwo/publish
+  MERGE_PACKAGE_PATH: ../code/servicethree/publish
 
 jobs:
 
