@@ -15,28 +15,28 @@ variable "services" {
   type        = map
   default     = {
     frontend = {
-      name="gwl-frontend"
+      name="sam-frontend"
     },
     serviceone = {
-      name="gwl-letters"
+      name="sam-letters"
     },
     servicetwo = {
-      name="gwl-numbers"
+      name="sam-numbers"
     },
     servicethree = {
-      name="gwl-merge"
+      name="sam-merge"
     },
   }
 }
 
 resource "azurerm_resource_group" "rg" {
-    name     = "gwl-tf-rg"
+    name     = "samuel.nwangwu_rg_Windows_uksouth"
     location = "uksouth"
 }
 resource "azurerm_app_service_plan" "app-service-plan" {
-  name = "gwl-tf-appservice"
+  name = "samuel.nwangwu_asp_Windows_uksouth_0"
   resource_group_name = azurerm_resource_group.rg.name
-  location = azurerm_resource_group.rg.location
+  location = "uksouth"
   kind = "Linux"
   reserved = true
   sku {
