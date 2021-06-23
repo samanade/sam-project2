@@ -1,0 +1,46 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Avanade Delivery(3eba6e29-3983-495b-a539-c3c4b43fb90c)'
+    appType: 'webApp'
+    WebAppName: 'sam-frontend'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Avanade Delivery(3eba6e29-3983-495b-a539-c3c4b43fb90c)'
+    appType: 'webApp'
+    WebAppName: 'sam-letters'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    appType: 'webApp'
+    WebAppName: 'sam-numbers'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Avanade Delivery(3eba6e29-3983-495b-a539-c3c4b43fb90c)'
+    appType: 'webApp'
+    WebAppName: 'sam-merge'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
+- task: Test
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Avanade Delivery(3eba6e29-3983-495b-a539-c3c4b43fb90c)'
+    appType: 'webApp'
+    WebAppName: 'sam-tests'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
