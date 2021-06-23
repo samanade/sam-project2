@@ -13,16 +13,16 @@ on:
 env:
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 5.0.x
-  FE_DIRECTORY: C:/Users/samuel.nwangwu/Documents/sam-project2/code/frontend
-  NUMBERS_DIRECTORY: C:/Users/samuel.nwangwu/Documents/sam-project2/code/serviceone
-  LETTERS_DIRECTORY: C:/Users/samuel.nwangwu/Documents/sam-project2/code/servicetwo/servicetwo
-  MERGE_DIRECTORY: C:/Users/samuel.nwangwu/Documents/sam-project2/code/servicethree
-  TEST_DIRECTORY: C:/Users/samuel.nwangwu/Documents/sam-project2/code/tests
+  FE_DIRECTORY: ./code/frontend
+  NUMBERS_DIRECTORY: ./code/serviceone
+  LETTERS_DIRECTORY: ./code/servicetwo
+  MERGE_DIRECTORY: ./code/servicethree
+  TEST_DIRECTORY: ./code/tests
   
-  FE_PACKAGE_PATH: C:/Users/samuel.nwangwu/Documents/sam-project2/code/frontend/publish
-  NUMBERS_PACKAGE_PATH: C:/Users/samuel.nwangwu/Documents/sam-project2/code/serviceone/publish
-  LETTERS_PACKAGE_PATH: C:/Users/samuel.nwangwu/Documents/sam-project2/code/servicetwo/publish
-  MERGE_PACKAGE_PATH: C:/Users/samuel.nwangwu/Documents/sam-project2/code/servicethree/publish
+  FE_PACKAGE_PATH: ./code/frontend/publish
+  NUMBERS_PACKAGE_PATH: ./code/serviceone/publish
+  LETTERS_PACKAGE_PATH: ./code/servicetwo/publish
+  MERGE_PACKAGE_PATH: ./code/servicethree/publish
 
 jobs:
 
