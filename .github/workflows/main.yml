@@ -1,0 +1,162 @@
+name: Build and deploy services
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  
+  workflow_dispatch:
+
+env:
+  CONFIGURATION: Release
+  DOTNET_CORE_VERSION: 5.0.x
+  FE_DIRECTORY: ./code/frontend
+  NUMBERS_DIRECTORY: ./code/serviceone
+  LETTERS_DIRECTORY: ./code/servicetwo
+  MERGE_DIRECTORY: ./code/servicethree
+  TEST_DIRECTORY: ./code/tests
+  
+  FE_PACKAGE_PATH: ./code/frontend/publish
+  NUMBERS_PACKAGE_PATH: ./code/serviceone/publish
+  LETTERS_PACKAGE_PATH: ./code/servicetwo/publish
+  MERGE_PACKAGE_PATH: ./code/servicethree/publish
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test
+        run: echo 'Hello Test'
+        #run: dotnet test "${{ env.TEST_DIRECTORY }}" /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+
+  build-numbers-service:
+    runs-on: ubuntu-latest
+    needs: test
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+      - name: Restore
+        run: dotnet restore "${{ env.NUMBERS_DIRECTORY }}"
+      - name: Build
+        run: dotnet build "${{ env.NUMBERS_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }}
+      - name: Publish
+        run: dotnet publish "${{ env.NUMBERS_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --output "${{ env.NUMBERS_PACKAGE_PATH }}"
+      - name: publish numbers service to Azure
+        run: az
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+      - name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.25.0
+          inlineScript: |
+            cd "${{ env.NUMBERS_PACKAGE_PATH }}"
+            az webapp up -n sam-numbers --os-type Linux --resource-group samuel_nwangwu.rg --runtime "DOTNET|5.0"
+  build-letters-service:
+      runs-on: ubuntu-latest
+      needs: test
+      # Steps represent a sequence of tasks that will be executed as part of the job
+      steps:
+        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        - uses: actions/checkout@v2
+        - name: Setup .NET Core
+          uses: actions/setup-dotnet@v1
+          with:
+            dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+        - name: Restore
+          run: dotnet restore "${{ env.LETTERS_DIRECTORY }}"
+        - name: Build
+          run: dotnet build "${{ env.LETTERS_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }}
+        - name: Publish
+          run: dotnet publish "${{ env.LETTERS_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --output "${{ env.LETTERS_PACKAGE_PATH }}"
+    
+        - name: publish numbers service to Azure
+          run: az
+        - name: Azure Login
+          uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+        - name: Azure CLI script
+          uses: azure/CLI@v1
+          with:
+            azcliversion: 2.25.0
+            inlineScript: |
+              cd "${{ env.LETTERS_PACKAGE_PATH }}"
+              az webapp up -n sam-letters --os-type Linux --resource-group samuel_nwangwu.rg --runtime "DOTNET|5.0"
+ 
+  build-merge-service:
+    runs-on: ubuntu-latest
+    needs: test
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+      - name: Restore
+        run: dotnet restore "${{ env.MERGE_DIRECTORY }}"
+      - name: Build
+        run: dotnet build "${{ env.MERGE_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }}
+      - name: Publish
+        run: dotnet publish "${{ env.MERGE_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --output "${{ env.MERGE_PACKAGE_PATH }}"
+      - name: publish numbers service to Azure
+        run: az
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+      - name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.25.0
+          inlineScript: |
+            cd "${{ env.MERGE_PACKAGE_PATH }}"
+            az webapp up -n sam-merge --os-type Linux --resource-group samuel_nwangwu.rg --runtime "DOTNET|5.0"
+            az webapp config appsettings set -g samuel_nwangwu.rg -n sam-merge --settings "@../../../.github/workflows/mergeSettings.json"
+  build-frontend-service:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+      - name: Restore
+        run: dotnet restore "${{ env.FE_DIRECTORY }}"
+      - name: Build
+        run: dotnet build "${{ env.FE_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }}
+      - name: Publish
+        run: dotnet publish "${{ env.MERGE_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --output "${{ env.FE_PACKAGE_PATH }}"
+      - name: publish numbers service to Azure
+        run: az
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+      - name: Azure CLI script
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.25.0
+          inlineScript: |
+            cd "${{ env.FE_PACKAGE_PATH }}"
+            az webapp up -n sam-frontend --os-type Linux --resource-group samuel_nwangwu.rg --runtime "DOTNET|5.0"
+            az webapp config appsettings set -g samuel_nwangwu.rg -n sam-frontend --settings "@../../../.github/workflows/frontendSettings.json"
