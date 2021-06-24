@@ -22,7 +22,7 @@ I have decided to create a PT management app that allows users to create, read, 
 
 ### Project Requirements
 
-* A Trello board
+* A Kanban board (Asana)
 * Clear documentation architecture and risk assessment
 * A c#-based functional application that follows best practices and design principles
 * Test suites for the application, which will include automated tests for validation of the application
@@ -54,29 +54,25 @@ Service 3 generates another random object:
       * Generates a random letter 
 Service 4 generates object based on service 3 and 4:
       * This merges service 2 and 3 to produce a string.
- 
-* Create a workout (satisfies 'Create') and assign them to a client:
-   * *Title* 
-   * *Date* 
-   * *Thumbnail* 
-   * *Client* the workout will be assigned too
-  
-* View and update client and workout details (satisfies 'Read' and 'Update')
-* Delete client or workout (satisfies 'Delete')
+
 
 ## Architecture
 ### Database Structure
-Pictured below is an entity relationship diagram (ERD) showing the structure of the database.
+Pictured below is an architecture diagram illustrating how all the processes interact for the project. 
 ![architecture][architecture]
-Everything in green has been implemented into the app, while everything in red has not. The ERD models a many-to-many relationship between Client entities and Workout entities using an association table. This allows the user to create clients and asign multiple workouts in the database with one client. Similarly, many workouts can therefore be associated with a client.
 
 ## Project Tracking
 Trello was used to track the progress of the project (pictured below). You can find the link to this board here: https://trello.com/b/aJCcDQ1b/
 
-![trello][trello]
+![asana][asana]
 
 ## Risk Assessment
 ![RiskAssessment][riskassessment]
+
+## Testing 
+This section contains the testing details including the code coverage report and unit testing conducted.
+![Testing1][testing1]
+![Testing2][testing2]
 
 ## Front-End Design
 When the user navigates to the URL, they are directed to the home page:
@@ -97,8 +93,7 @@ Workouts for a client can be viewed from clients page by selecting "View Workout
 ![viewworkouts][viewworkouts]
 
 ## Known Issues
-There are a few bugs with the current build of the app:
-* The validation script does not render so HTML form inputs are not validated according to data type
+* The workflow doesn't complete as the plan anme is
 * Workouts can be edited however when editing a client details a not null reference error occurs
 ## Future Improvements
 There are a number of improvements I would like to implement (outside of current bugs):
@@ -110,9 +105,11 @@ Samuel Nwangwu
 
 
 
-[architecture]: https://imgur.com/vBsTqu6
-[trello]: https://i.imgur.com/X68OFUm.png
-[riskassessment]: https://i.imgur.com/rXQhjK7.png
+[architecture]: https://imgur.com/vBsTqu6.png
+[asana]: https://i.imgur.com/X68OFUm.png
+[riskassessment]: https://i.imgur.com/fNKPJB4.png
+[testing1]: https://i.imgur.com/894sftn.png
+[tesing2]: https://i.imgur.com/IYbR1vQ.png
 [homeloggedout]: https://i.imgur.com/6p934TM.png
 [clientslanding]: https://i.imgur.com/SdDG4Wb.pngs
 [newclient]: https://i.imgur.com/PqrkyfJ.png

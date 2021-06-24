@@ -64,7 +64,7 @@ jobs:
           azcliversion: 2.25.0
           inlineScript: |
             cd "${{ env.NUMBERS_PACKAGE_PATH }}"
-            az webapp up -n sam-numbers --os-type Linux --resource-group samuel.nwangwu_rg --runtime "DOTNET|5.0"
+            az webapp up -n sam-numbers --os-type Linux --resource-group samuel.nwangwu_rg --runtime "DOTNET|5.0" --os-type Linux
   build-letters-service:
       runs-on: ubuntu-latest
       needs: test
