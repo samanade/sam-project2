@@ -4,15 +4,9 @@ name: Build and deploy services
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-<<<<<<< HEAD
     branches: [ master]
   pull_request:
     branches: [ master ]
-=======
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
->>>>>>> parent of edd40e2 (commit)
   
   workflow_dispatch:
 
@@ -70,11 +64,7 @@ jobs:
           azcliversion: 2.25.0
           inlineScript: |
             cd "${{ env.NUMBERS_PACKAGE_PATH }}"
-<<<<<<< HEAD
             az webapp up -n sam-numbers --os-type Linux --resource-group samuel.nwangwu_rg --runtime "DOTNET|5.0" --os-type Linux
-=======
-            az webapp up -n sam-numbers --os-type Linux --resource-group samuel.nwangwu_rg --runtime "DOTNET|5.0"
->>>>>>> parent of edd40e2 (commit)
   build-letters-service:
       runs-on: ubuntu-latest
       needs: test
@@ -106,11 +96,7 @@ jobs:
             azcliversion: 2.25.0
             inlineScript: |
               cd "${{ env.LETTERS_PACKAGE_PATH }}"
-<<<<<<< HEAD
               az webapp up -n sam-letters --os-type Linux --resource-group samuel.nwangwu_rg --runtime "DOTNET|5.0"
-=======
-              az webapp up -n sam-letters --os-type Linux --resource-group samuel.nwangwu_rg --runtime "DOTNET|5.0"
->>>>>>> parent of edd40e2 (commit)
  
   build-merge-service:
     runs-on: ubuntu-latest
@@ -142,13 +128,8 @@ jobs:
           azcliversion: 2.25.0
           inlineScript: |
             cd "${{ env.MERGE_PACKAGE_PATH }}"
-<<<<<<< HEAD
             az webapp up -n sam-merge --os-type Linux --resource-group samuel.nwangwu_rg --runtime "DOTNET|5.0"
             az webapp config appsettings set -g samuel.nwangwu_rg -n sam-merge --settings "@../../../.github/workflows/mergeSettings.json"
-=======
-            az webapp up -n sam-merge --os-type Linux --resource-group samuel_nwangwu.rg --runtime "DOTNET|5.0"
-            az webapp config appsettings set -g samuel.nwangwu_rg -n sam-merge --settings "@../../../.github/workflows/mergeSettings.json"
->>>>>>> parent of edd40e2 (commit)
   build-frontend-service:
     runs-on: ubuntu-latest
     needs: test
@@ -177,10 +158,5 @@ jobs:
           azcliversion: 2.25.0
           inlineScript: |
             cd "${{ env.FE_PACKAGE_PATH }}"
-<<<<<<< HEAD
             az webapp up -n sam-frontend --os-type Linux --resource-group samuel.nwangwu_rg --runtime "DOTNET|5.0"
             az webapp config appsettings set -g samuel.nwangwu_rg -n sam-frontend --settings "@../../../.github/workflows/frontendSettings.json"
-=======
-            az webapp up -n sam-frontend --os-type Linux --resource-group samuel_nwangwu.rg --runtime "DOTNET|5.0"
-            az webapp config appsettings set -g samuel.nwangwu_Srg -n sam-frontend --settings "@../../../.github/workflows/frontendSettings.json"
->>>>>>> parent of edd40e2 (commit)
