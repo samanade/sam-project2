@@ -105,5 +105,5 @@ Samuel Nwangwu
 [testing1]: https://i.imgur.com/894sftn.png
 [tesing2]: https://i.imgur.com/IYbR1vQ.png
 [error]: https://i.imgur.com/nxOuiVh.png
-[Terraform] : https://i.imgur.com/muFP8Bj.png
+[Terraform]: https://i.imgur.com/muFP8Bj.png
 
