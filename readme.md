@@ -3,15 +3,15 @@
 
 ## Contents
 * [Brief](#brief)
-   * [Additional Requirements](#additional-requirements)
+   * [Project Requirements](#project-requirements)
    * [My Approach](#my-approach)
+	*[Terraform](#terraform)
+* [Project Tracking](#project-tracking)
 * [Architecture](#architecture)
    * [CI Pipeline](#ci-pipeline)
-* [Project Tracking](#project-tracking)
 * [Risk Assessment](#risk-assessment)
 * [Testing](#testing)
 * [Known Issues](#known-issues)
-* [Future Improvements](#future-improvements)
 * [Authors](#authors)
 
 ## Brief
@@ -37,7 +37,13 @@ I have decided to create a PT management app that allows users to create, read, 
 * Terraform - version 1.0.0
 * GitHub Action
 
+## Project Tracking
+Asana was used to track the progress of the project (pictured below). You can find the link to this board here: https://app.asana.com/0/1200497255553431/board
+
+![asana][asana]
 ## Architecture 
+Pictured below is an architecture diagram illustrating how all the processes interact for the project. 
+![architecture][architecture]
 
 The project specification requires at least 4 service orientated services to work together.
 Where:
@@ -55,16 +61,17 @@ Service 3 generates another random object:
 Service 4 generates object based on service 3 and 4:
       * This merges service 2 and 3 to produce a string.
 
+#### Terraform
+Terraform was used to deploy infrastructure as code to Azure, creating an app service plan and respective web apps.
 
-## Architecture
-### Database Structure
-Pictured below is an architecture diagram illustrating how all the processes interact for the project. 
-![architecture][architecture]
+Terraform init - to initialise the terraform file (main.tf). 
+Terraform plan- this creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure. 
+Terraform - Apply this executes the actions proposed in a Terraform plan
 
-## Project Tracking
-Trello was used to track the progress of the project (pictured below). You can find the link to this board here: https://trello.com/b/aJCcDQ1b/
+Once completed produces four different app services, under the same app service plan in the same resource group as picture below.
 
-![asana][asana]
+![Terraform][terraform]
+
 
 ## Risk Assessment
 ![RiskAssessment][riskassessment]
@@ -74,42 +81,29 @@ This section contains the testing details including the code coverage report and
 ![Testing1][testing1]
 ![Testing2][testing2]
 
-## Front-End Design
-When the user navigates to the URL, they are directed to the home page:
-![homeloggedout][homeloggedout]
+The testing conducted here was Arrange, Act and Assert testing pattern, a total of 4 unit tests were conducted for this project which tested the operations required for those controllers such as producing the required output.
 
-Selecting "Clients" tab on the nav menu will bring up the follow page showing a list of all current clients:
+The tests consisted of x unit testing. These are designed to assert that if a certain function is run, the output should be a known value. 
+The controllers were tested this included the merge, numbers, home and letters controller. 
+The line coverage is 70.3%. The result could of been higher if I was able to find a way to exclude code that was not intended to be tested, for instance the views in the front end.
 
-![clientslanding][clientslanding]
-
-Clicking the "Create New" link directs the user to a create form where they can enter a new client : 
-
-![newclient][newclient] 
-
-The same structure is followed for the "Workouts tab" from the homepage. The user is first directed to a page showing a list of all workouts that can edited or deleted. A new workout can also be created by following the "Create Workout" link. 
-
-Workouts for a client can be viewed from clients page by selecting "View Workouts" next to their name : 
-
-![viewworkouts][viewworkouts]
 
 ## Known Issues
-* The workflow doesn't complete as the plan anme is
-* Workouts can be edited however when editing a client details a not null reference error occurs
-## Future Improvements
-There are a number of improvements I would like to implement (outside of current bugs):
-* Allow exercises to also be added to workouts 
-* Login feature with account page where user can personalize their profile 
+* The workflow doesn't complete due to an error with plan name not being consistent which I was unable to resolve. 
+![Error][error]
+
+* I believe the issue arised from the main.yml file attempting to deploy the service to the incorrect app service plan, however I was unable to locate where this call was originating from. 
 
 ## Authors
 Samuel Nwangwu
 
 
 
-[architecture]: https://imgur.com/vBsTqu6
-[trello]: https://i.imgur.com/X68OFUm.png
-[riskassessment]: https://i.imgur.com/rXQhjK7.png
-[homeloggedout]: https://i.imgur.com/6p934TM.png
-[clientslanding]: https://i.imgur.com/SdDG4Wb.pngs
-[newclient]: https://i.imgur.com/PqrkyfJ.png
-[viewworkouts]: https://i.imgur.com/PbUlcb6.png
+[architecture]: https://imgur.com/vBsTqu6.png
+[asana]: https://i.imgur.com/X68OFUm.png
+[riskassessment]: https://i.imgur.com/fNKPJB4.png
+[testing1]: https://i.imgur.com/894sftn.png
+[tesing2]: https://i.imgur.com/IYbR1vQ.png
+[error]: https://i.imgur.com/nxOuiVh.png
+[terraform] : https://i.imgur.com/muFP8Bj.png
 
