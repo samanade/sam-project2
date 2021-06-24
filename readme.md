@@ -105,11 +105,9 @@ Samuel Nwangwu
 
 
 
-[architecture]: https://imgur.com/vBsTqu6.png
-[asana]: https://i.imgur.com/X68OFUm.png
-[riskassessment]: https://i.imgur.com/fNKPJB4.png
-[testing1]: https://i.imgur.com/894sftn.png
-[tesing2]: https://i.imgur.com/IYbR1vQ.png
+[architecture]: https://imgur.com/vBsTqu6
+[trello]: https://i.imgur.com/X68OFUm.png
+[riskassessment]: https://i.imgur.com/rXQhjK7.png
 [homeloggedout]: https://i.imgur.com/6p934TM.png
 [clientslanding]: https://i.imgur.com/SdDG4Wb.pngs
 [newclient]: https://i.imgur.com/PqrkyfJ.png
