@@ -110,7 +110,7 @@ Samuel Nwangwu
 
 
 
-[architecture]: https://imgur.com/vBsTqu6
+[architecture]: https://i.imgur.com/vBsTqu6.png
 [trello]: https://i.imgur.com/X68OFUm.png
 [riskassessment]: https://i.imgur.com/rXQhjK7.png
 [homeloggedout]: https://i.imgur.com/6p934TM.png
