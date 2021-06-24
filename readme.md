@@ -39,8 +39,8 @@ I have decided to create a PT management app that allows users to create, read, 
 
 ## Project Tracking
 Asana was used to track the progress of the project (pictured below). You can find the link to this board here: https://app.asana.com/0/1200497255553431/board
-
 ![asana][asana]
+
 ## Architecture 
 Pictured below is an architecture diagram illustrating how all the processes interact for the project. 
 ![architecture][architecture]
@@ -100,7 +100,7 @@ Samuel Nwangwu
 
 
 [architecture]: https://imgur.com/vBsTqu6.png
-[asana]: https://i.imgur.com/X68OFUm.png
+[asana]: https://i.imgur.com/X3SnjbC.png
 [riskassessment]: https://i.imgur.com/fNKPJB4.png
 [testing1]: https://i.imgur.com/894sftn.png
 [tesing2]: https://i.imgur.com/IYbR1vQ.png
