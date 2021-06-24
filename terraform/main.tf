@@ -30,11 +30,11 @@ variable "services" {
 }
 
 resource "azurerm_resource_group" "rg" {
-    name     = "samuel.nwangwu_rg_Windows_uksouth"
+    name     = "samuel.nwangwu_rg"
     location = "uksouth"
 }
 resource "azurerm_app_service_plan" "app-service-plan" {
-  name = "samuel.nwangwu_asp_Windows_uksouth_0"
+  name = "letters-project"
   resource_group_name = azurerm_resource_group.rg.name
   location = "uksouth"
   kind = "Linux"
